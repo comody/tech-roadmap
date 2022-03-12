@@ -29,19 +29,19 @@ public class MemberController {
         return new ResponseDto<>(collect);
     }
 
-    @PostMapping("/api/v1/register")
+    @PostMapping("/api/v1/auth/register")
     public ResponseDto<MemberWithAuthDto> register(@RequestBody MemberRegisterRequestDto requestDto) {
         MemberWithAuthDto memberWithAuth = signService.registerMember(requestDto);
         return new ResponseDto<>(memberWithAuth);
     }
 
-    @PostMapping("/api/v1/login")
+    @PostMapping("/api/v1/auth/login")
     public ResponseDto<MemberWithAuthDto> login(@RequestBody MemberLoginRequestDto requestDto) {
         MemberWithAuthDto memberWithAuth = signService.loginMember(requestDto);
         return new ResponseDto<>(memberWithAuth);
     }
 
-    @PostMapping("/api/v1/reissue")
+    @PostMapping("/api/v1/auth/reissue")
     public ResponseDto<TokenDto> reIssue(@RequestBody TokenDto requestDto) {
         TokenDto token = signService.reIssue(requestDto);
         return new ResponseDto<>(token);
