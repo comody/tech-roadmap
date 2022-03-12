@@ -31,7 +31,7 @@ public class JwtTokenFilter extends GenericFilter {
                 request.setAttribute("exception", "ExpiredJwtException");
             }
 
-            if (jwtTokenProvider.validateToken(token)) {
+            if (!jwtTokenProvider.validateToken(token)) {
                 request.setAttribute("exception", "ExpiredJwtException");
             }
         } catch (AuthenticationException authenticationException){
