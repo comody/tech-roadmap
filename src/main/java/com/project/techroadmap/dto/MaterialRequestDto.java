@@ -12,6 +12,4 @@ import lombok.NoArgsConstructor;
 public class MaterialRequestDto {
     private String materialName;
     private String url;
-
-    private Long categoryId;
 }

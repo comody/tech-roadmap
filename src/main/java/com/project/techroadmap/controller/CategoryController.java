@@ -53,15 +53,20 @@ public class CategoryController {
     @PostMapping(value = "/api/v1/categories/{category_id}/materials")
     public ResponseDto<MaterialDto> create (@PathVariable(value="category_id") String id,
                                             @RequestBody MaterialRequestDto requestDto) {
-        Category category = categoryService.findById(requestDto.getCategoryId()).orElseThrow(() -> new BusinessException(ErrorCode.BusinessException));
+        try {
+            Long long_id = Long.parseLong(id);
+            Category category = categoryService.findById(long_id).orElseThrow(() -> new BusinessException(ErrorCode.BusinessException));
 
-        Material material = materialRepository.save(Material.builder()
-                .materialName(requestDto.getMaterialName())
-                .url(requestDto.getUrl())
-                .category(category)
-                .build());
+            Material material = materialRepository.save(Material.builder()
+                    .materialName(requestDto.getMaterialName())
+                    .url(requestDto.getUrl())
+                    .category(category)
+                    .build());
 
-        return new ResponseDto<>(new MaterialDto(material));
+            return new ResponseDto<>(new MaterialDto(material));
+        } catch(NumberFormatException nfe){
+            throw new BusinessException(ErrorCode.InvalidInputValueException);
+        }
     }
 
 }
