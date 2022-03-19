@@ -1,10 +1,14 @@
+server:
+  port: 8080
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/techroadmap
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/TECH_ROAD_MAP?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: dayoung
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
     properties:
