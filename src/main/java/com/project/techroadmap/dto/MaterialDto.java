@@ -1,11 +1,13 @@
 package com.project.techroadmap.dto;
 
 import com.project.techroadmap.entity.Material;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@ApiModel(value = "MaterialDto")
 @Getter
 @Builder
 @AllArgsConstructor

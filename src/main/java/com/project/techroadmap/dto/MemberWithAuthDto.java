@@ -1,8 +1,10 @@
 package com.project.techroadmap.dto;
 
 import com.project.techroadmap.entity.Role;
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
+@ApiModel(value = "MemberWithAuthDto")
 @Getter
 @Builder
 @AllArgsConstructor

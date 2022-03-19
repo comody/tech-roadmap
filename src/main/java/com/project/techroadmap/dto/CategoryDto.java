@@ -1,6 +1,7 @@
 package com.project.techroadmap.dto;
 
 import com.project.techroadmap.entity.Category;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ApiModel(value = "CategoryDto")
 @Getter
 @Builder
 @AllArgsConstructor

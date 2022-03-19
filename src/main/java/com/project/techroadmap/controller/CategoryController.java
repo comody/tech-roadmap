@@ -9,18 +9,22 @@ import com.project.techroadmap.entity.Material;
 import com.project.techroadmap.exception.BusinessException;
 import com.project.techroadmap.repository.MaterialRepository;
 import com.project.techroadmap.service.CategoryService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Api(value = "Category Controller", tags = "Category") // 1
 @RestController
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
     private final MaterialRepository materialRepository;
 
+    @ApiOperation(value = "카테고리", notes = "카테고리를 가져온다.") // 2
     @GetMapping("/api/v1/categories")
     public ResponseDto<List<CategoryDto>> categories() {
         List<Category> findCategories = categoryService.findCategories();
@@ -31,6 +35,7 @@ public class CategoryController {
         return new ResponseDto<>(collect);
     }
 
+    @ApiOperation(value = "카테고리생성", notes = "카테고리를 생성한다.") // 2
     @PostMapping(value = "/api/v1/categories/new")
     public ResponseDto<CategoryDto> create (@RequestBody CategoryRequestDto requestDto) {
         Category category;
@@ -50,6 +55,7 @@ public class CategoryController {
         return new ResponseDto<>(new CategoryDto(category));
     }
 
+    @ApiOperation(value = "카테고리 내 작업생성", notes = "카테고리 내 작업을 생성한다.") // 2
     @PostMapping(value = "/api/v1/categories/{category_id}/materials")
     public ResponseDto<MaterialDto> create (@PathVariable(value="category_id") String id,
                                             @RequestBody MaterialRequestDto requestDto) {
