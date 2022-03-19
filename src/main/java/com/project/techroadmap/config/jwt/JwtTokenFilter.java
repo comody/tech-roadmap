@@ -25,7 +25,6 @@ public class JwtTokenFilter extends GenericFilter {
             if (token != null && jwtTokenProvider.validateToken(token)) {
                 Authentication auth = jwtTokenProvider.getAuthentication(token);
                 SecurityContextHolder.getContext().setAuthentication(auth);
-                System.out.println("error" + auth);
             }
             if (token == null) {
                 request.setAttribute("exception", "ExpiredJwtException");
@@ -36,7 +35,6 @@ public class JwtTokenFilter extends GenericFilter {
             }
         } catch (AuthenticationException authenticationException){
             SecurityContextHolder.clearContext();
-            System.out.println("error" + authenticationException);
             restAuthenticationEntryPoint.commence((HttpServletRequest) request, (HttpServletResponse) response, authenticationException);
         }
 

@@ -76,7 +76,6 @@ public class JwtTokenProvider {
 
         // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);
-        System.out.println("auth" + authorities);
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 
@@ -99,11 +98,8 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            System.out.println("validate" + token);
-            System.out.println("hello" + Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
             return !getClaims(token).getExpiration().before(new Date());
         } catch (Exception e) {
-            System.out.println("exception");
             return false;
         }
     }
