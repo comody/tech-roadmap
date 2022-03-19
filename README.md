@@ -4,6 +4,4 @@ tech-roadmap 는 테크 관련 기술 블로그를 공유 저장하는 기능을
 
 ## Swagger API
 어플리케이션 실행 후 다음 주소로 접속
-```
-    http://localhost:8080/swagger-ui/index.html
-```
+http://localhost:8080/swagger-ui/index.html
